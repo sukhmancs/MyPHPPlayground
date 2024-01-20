@@ -1,0 +1,98 @@
+<?php
+/**
+ * I Sukhmanjeet Singh, 000838215, certify that this material is my original work. No other person's work has been used without suitable acknowledgment and I have not made my work available to anyone else.
+ * @author Sukhmanjeet Singh <s.sukhmanjeet-singh@mohawkcollege.ca>
+ * @package COMP 10260 Assignment 4
+ * 
+ * @version 2023.35.0
+ */
+
+/**
+ * Class to represent the Infinite Scroll
+ */
+class InfiniteScroll 
+{    
+    private const DB_HOST = 'localhost'; // Database host
+    private const DB_NAME = '000838215'; // Database name
+    private const DB_USER = 'root';      // Database user
+
+    private static string $dsn = 'mysql:host=' . self::DB_HOST . ';dbname=' . self::DB_NAME;  // Data Source Name
+    private $dbh;  // Database handle
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {        
+        try {  // Try to connect to the database
+            $this->ConnectToDatabase();
+         } catch (Exception $e) { // If unable to connect to the database, log the error to a file
+            error_log("ERROR: Couldn't connect. {$e->getMessage()}\n", 3, "error.log");            
+         }         
+    }
+
+    /**
+     * Function to connect to the database
+     */
+    private function ConnectToDatabase(): void {
+        $this->dbh = new PDO(self::$dsn, self::DB_USER);
+    }
+
+    /**
+     * Function to generate HTML for author and quotes
+     * @param string $author_name the name of the author
+     * @param string $author_quotes the quotes of the author
+     * @return string the HTML for author and quotes
+     */
+    function GenerateHtmlForAuthorAndQuotes(string $author_name, string $author_quotes, string $color): string 
+    {        
+        return '<div class="card mb-3 a4card w-100">
+                    <div class="card-header" style="background-color:' . $color . '; font-weight: bold;">'. $author_name .'</div>
+                    <div class="card-body d-flex align-items-center">
+                        <p class="card-text w-100">'. $author_quotes .'</p>
+                    </div>
+                </div>';
+    }
+
+    /**
+     * Function to fetch data from the database
+     * @param int $page the page number
+     * @return array the array of HTML for author and quotes
+     */
+    public function FetchDataFromDatabase(int $page): array
+    {        
+        $limit = 20;   // Number of records to fetch per page
+        $offset = ($page - 1) * $limit;  // Number of records to skip on each page
+        $query = "SELECT quotes.quote_text, authors.author_name
+                  FROM quotes
+                  JOIN authors ON quotes.author_id = authors.author_id
+                  LIMIT :per_page
+                  OFFSET :offset 
+                 ";
+        $stmt = $this->dbh->prepare($query);  // Prepare the query
+
+        // Bind the parameters
+        $stmt->bindValue(':per_page', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();     // Execute the query   
+
+        // Array of colors
+        $colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange', 'cyan', 'magenta', 'lime', 'teal', 'maroon', 'navy', 'olive', 'silver', 'gray', 'black', 'white'];  // Add more colors as needed
+        
+        $result = [];
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // Fetch the data from the database
+            $color = $colors[array_rand($colors)];     // Pick a random color from the array
+            $result[] = $this->GenerateHtmlForAuthorAndQuotes($row['author_name'], $row['quote_text'], $color);  // Generate the HTML for author and quotes
+         }
+        return $result;  // Return the array of HTML for author and quotes
+    }
+}
+
+$infiniteScroll = new InfiniteScroll();  // Create an instance of the InfiniteScroll class
+
+// Get the page number
+$page = isset($_GET['page']) ? filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]) : 1;  // If $_GET['page'] is set and is an integer greater than or equal to 0, then assign it to $page, otherwise assign 0 to $page
+
+$result = $infiniteScroll->FetchDataFromDatabase($page);  // Fetch data from the database
+echo json_encode($result);  // Provide JSON encoded array
+?>
