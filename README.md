@@ -57,4 +57,4 @@ Your contributions are welcome! If you have ideas for improvements, bug fixes, o
 
 ## License
 
-This repository is licensed under the [MIT License](LICENSE). Feel free to use the code in your own projects, learn from it, and contribute back!
+This repository is licensed under the [MIT License](./LICENSE). Feel free to use the code in your own projects, learn from it, and contribute back!
