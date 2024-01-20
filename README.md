@@ -4,7 +4,7 @@
 
 </div>
 
-🚀 Welcome to the PHP Projects Repository! This repository contains a collection of PHP projects designed to showcase various web development concepts, utilities, and examples.
+🚀 Welcome to the PHP Projects Repository! This repository contains a collection of PHP projects designed to showcase various web development concepts such as input validation, database interfacing, session/user management , AJAX, websockets and security. As well as covering a pure server-side application architecture.
 
 ## Table of Contents
 
@@ -13,7 +13,6 @@
 - [Technologies Used](#technologies-used)
 - [Projects Included](#projects-included)
 - [Usage Instructions](#usage-instructions)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
@@ -30,12 +29,12 @@ This repository serves as a portfolio of PHP projects, each addressing different
 
 - **PHP:** The primary server-side scripting language.
 - **MySQL:** Database management system for data storage.
-- **Bootstrap:** Front-end framework for responsive and stylish design.
+- **HTML/CSS/JAVASCRIPT:** Front-end framework for responsive and stylish design.
 
 ## Projects Included
 
-1. **User Authentication System:**
-   - A secure user authentication system with features like registration, login, and password recovery.
+1. **User Management System:**
+   - A secure user management system with features like session management.
 
 2. **Simple CMS (Content Management System):**
    - A lightweight CMS allowing users to manage and publish content easily.
@@ -49,11 +48,6 @@ If you want to explore or use any of the projects in this repository, follow the
 
 1. Clone the repository to your local machine.
 2. Navigate to the specific project directory.
-3. Follow the project-specific README instructions for setup and usage.
-
-## Contributing
-
-Your contributions are welcome! If you have ideas for improvements, bug fixes, or new projects, feel free to open an issue or submit a pull request. Let's collaborate and make this repository a valuable resource for the community.
 
 ## License
 
