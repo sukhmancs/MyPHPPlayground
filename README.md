@@ -1,8 +1,23 @@
-<div align="center">
-
-# PHP Projects Repository
-
+<div id="header" align="center">
+  <!--<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGYyZTUyYjAwNGYwZDk0M2EwNGNiYWZjMTg2N2Y2ZGVhZDYyOTZlMSZjdD1z/HwBlFQZFcAoUcPHZdX/giphy.gif" width="100"/>-->
+  <img src="https://media.giphy.com/media/juua9i2c2fA0AIp2iq/giphy.gif" width="150"/>
+  
+  <div id="badges">
+    <a href="https://www.linkedin.com/in/singh-sukhmanjeet/">
+      <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+    </a>
+    <a href="https://www.reddit.com/user/sukhmang">
+      <img src="https://img.shields.io/badge/Reddit-white?style=for-the-badge&logo=reddit&logoColor=red" alt="Reddit Badge"/>
+    </a>
+    <a href="https://twitter.com/mijugilo">
+      <img src="https://img.shields.io/badge/Twitter-blue?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter Badge"/>
+    </a>
+  </div>
+  <h1>
+    PHP Projects Repository
+  </h1>
 </div>
+
 
 🚀 Welcome to the PHP Projects Repository! This repository contains a collection of PHP projects designed to showcase various web development concepts such as input validation, database interfacing, session/user management , AJAX, websockets and security. As well as covering a pure server-side application architecture.
 
